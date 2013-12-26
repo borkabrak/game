@@ -10,15 +10,6 @@ var Square = function(init){
         width: init.size
     }
 
-    // This keymap may belong in the game logic (right now, in the index.html), instead of the square object
-    my.keymap = {
-        119: "y,-10",
-        115: "y,10",
-        97: "x,-10",
-        100: "x,10",
-    };
-
-
     var context = document.getElementById("display").getContext('2d');
 
     my.draw = function(){

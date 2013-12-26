@@ -7,7 +7,8 @@
     <link rel="stylesheet/less" href="index.less">
     <script src="/script/less.js"></script>
 
-    <script src="index.js"></script>
+    <script src="square.js"></script>
+    <script src="onload.js"></script>
 
     <title>Do-It-Myself Canvas</title>
 
@@ -21,23 +22,5 @@
 </body>
 
 <script>
-    "use strict";
-
-    var square = new Square({ 
-        "x": 100,
-        "y": 100,
-        "size": 30,
-    });
-
-    document.body.onkeypress = function(event){
-
-        if (typeof square.keymap[event.which] === "undefined") {
-            return undefined;
-        }
-
-        square.move( square.keymap[event.which] );
-
-    };
-    
 </script>
 </html>
