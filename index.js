@@ -31,9 +31,29 @@ var Square = function(init){
 
     my.move = function(instruction){
 
+        var attr = my.attributes;
         instruction = instruction.replace(/ /g,"").split(",");
         my.clear();
-        my.attributes[instruction[0]] += parseInt(instruction[1], 10);
+
+        attr[instruction[0]] += parseInt(instruction[1], 10);
+
+        // Prevent movement outside the canvas
+        if (attr.x < 0) {
+            attr.x = 0
+        };
+
+        if (attr.y < 0) {
+            attr.y = 0
+        };
+
+        if (attr.x + attr.width > context.canvas.width) {
+            attr.x = context.canvas.width - attr.width;
+        };
+
+        if (attr.y + attr.height > context.canvas.height) {
+            attr.y = context.canvas.height - attr.height;
+        };
+
         return my.draw();
 
     };
