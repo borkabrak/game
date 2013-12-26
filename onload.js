@@ -8,19 +8,21 @@ window.onload = function(){
     });
 
     var keymap = {
-        119: "y,-10",
-        115: "y,10",
-        97: "x,-10",
-        100: "x,10",
+        "w": "y,-10",
+        "s": "y,10",
+        "a": "x,-10",
+        "d": "x,10",
     };
 
     document.body.onkeypress = function(event){
 
-        if (typeof keymap[event.which] === "undefined") {
+        var key = String.fromCharCode(event.which);
+
+        if (typeof keymap[key] === "undefined") {
             return undefined;
         }
 
-        square.move( keymap[event.which] );
+        square.move( keymap[key] );
 
     };
 }; 
