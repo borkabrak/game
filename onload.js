@@ -12,6 +12,14 @@ window.onload = function(){
         "x": 100,
         "y": 100,
         "size": 30,
+        "color": "#8a8",
+    });
+
+    var enemy = new Square({
+        "x": 200,
+        "y": 200,
+        "size": 30,
+        "color": "#a88",
     });
 
     document.body.onkeypress = function(event){
