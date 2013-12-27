@@ -7,7 +7,7 @@ Game = function(init){
     my.player;
 
     // Movement quantum (implement in move())
-    my.step = init.step || 10;
+    my.step = init && init.step || 10;
 
     my.keymap = {
         "w": function(){ my.player.move("y,-10") },
