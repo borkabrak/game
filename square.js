@@ -32,11 +32,11 @@ var Square = function(init){
 
         // Prevent movement outside the canvas
         if (attr.x < 0) {
-            attr.x = 0
+            attr.x = 0;
         };
 
         if (attr.y < 0) {
-            attr.y = 0
+            attr.y = 0;
         };
 
         if (attr.x + attr.width > context.canvas.width) {
