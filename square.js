@@ -4,11 +4,12 @@ var Square = function(init, entities){
     "use strict";
     var my = this;
    
-    my.x = init.x;
-    my.y = init.y;
-    my.height = init.size;
-    my.width = init.size;
-    my.color = init.color;
+    my.x = init.x || 0;
+    my.y = init.y || 0;
+    my.height = init.size || 30;
+    my.width = init.size || 30;
+    my.color = init.color || "#000";
+    my.player = init.player || false;
 
     var context = document.getElementById("display").getContext('2d');
 
@@ -45,14 +46,8 @@ var Square = function(init, entities){
             my.y = context.canvas.height - my.height;
         };
 
-        // Detect collisions
-        entities.detect_collisions();
-
         return my.draw();
 
     };
 
-    // initialize
-    my.draw();
-    entities.register(my);
 };
