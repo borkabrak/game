@@ -1,6 +1,8 @@
 window.onload = function(){
     "use strict";
 
+    var entities = new Entities();
+
     var keymap = {
         "w": function(){ square.move("y,-10") },
         "s": function(){ square.move("y,10") },
@@ -13,14 +15,14 @@ window.onload = function(){
         "y": 100,
         "size": 30,
         "color": "#8a8",
-    });
+    }, entities);
 
     var enemy = new Square({
         "x": 200,
         "y": 200,
         "size": 30,
         "color": "#a88",
-    });
+    }, entities);
 
     document.body.onkeypress = function(event){
 
