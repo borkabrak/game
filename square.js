@@ -7,12 +7,14 @@ var Square = function(init){
         x: init.x,
         y: init.y,
         height: init.size,
-        width: init.size
+        width: init.size,
+        color: init.color,
     }
 
     var context = document.getElementById("display").getContext('2d');
 
     my.draw = function(){
+        context.fillStyle = my.attributes.color;
         return context.fillRect( my.attributes.x, my.attributes.y, my.attributes.width, my.attributes.height );
     };
 
