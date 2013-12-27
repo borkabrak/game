@@ -1,0 +1,5 @@
+* Make Square() a subclass of Entities().  This would allow a more sensible
+  order to things.
+
+* Get rid of Square.attributes.  Just have the properties directly on the
+  object.
