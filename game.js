@@ -102,6 +102,8 @@ Game = function(init){
             entity.y = context.canvas.height - entity.height;
         };
 
+        my.detect_collisions();
+
         return my.draw(entity);
 
     };
@@ -111,13 +113,13 @@ Game = function(init){
     
     // Check for collision between two entities
     function collision(alpha, beta){
-        console.info("Checking for collision between %o and %o", alpha, beta);
-        // Vertical
-        if (alpha.y > beta.y && alpha.y < beta.y - beta.height ) {
-            console.error("Collision between %o and %o", alpha, beta);
-            return true
-        };
-        return false;
+        return ( 
+                // Vertical
+                (alpha.y > beta.y && alpha.y < beta.y + beta.height)
+                &&
+                // Horizontal
+                (alpha.x > beta.x && alpha.x < beta.x + beta.width)
+            ) ?  true : false;
     };
 
 };
