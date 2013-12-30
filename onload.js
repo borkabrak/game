@@ -13,8 +13,8 @@ window.onload = function(){
     }));
 
     game.register(new Square({
-        "x": 200,
-        "y": 200,
+        "x": 150,
+        "y": 150,
         "size": 30,
         "color": "#a88",
     }));

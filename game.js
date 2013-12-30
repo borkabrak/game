@@ -1,7 +1,9 @@
-// Entities -- objects to track within the game world.
 Game = function(init){
     "use strict";
     var my = this;
+
+    // Context of the canvas
+    var context = document.getElementById("display").getContext('2d');
 
     // Player character
     my.player;
@@ -10,13 +12,17 @@ Game = function(init){
     my.step = init && init.step || 10;
 
     my.keymap = {
-        "w": function(){ my.player.move("y,-10") },
-        "s": function(){ my.player.move("y,10") },
-        "a": function(){ my.player.move("x,-10") },
-        "d": function(){ my.player.move("x,10") },
+        "w": function(){ my.move(my.player, "y,-10") },
+        "s": function(){ my.move(my.player, "y,10") },
+        "a": function(){ my.move(my.player, "x,-10") },
+        "d": function(){ my.move(my.player, "x,10") },
+        "k": function(){ my.move(my.player, "y,-10") },
+        "j": function(){ my.move(my.player, "y,10") },
+        "h": function(){ my.move(my.player, "x,-10") },
+        "l": function(){ my.move(my.player, "x,10") },
     };
 
-    // The list of all entities.
+    // Entities -- objects to track within the game world.
     var entities = [];
 
     // Add entity to those we track.
@@ -24,7 +30,7 @@ Game = function(init){
         // entity gets id based on its index in the registry.
         entity.id = entities.length;
         if (entity.player === true) { my.player = entity };
-        entity.draw();
+        my.draw(entity);
         return entities.push(entity);
     };
 
@@ -51,6 +57,42 @@ Game = function(init){
         return collisions.length == 0 ? undefined : collisions;
     };
 
+    my.draw = function(entity){
+        context.fillStyle = entity.color;
+        return context.fillRect( entity.x, entity.y, entity.width, entity.height );
+    };
+
+    my.clear = function(entity){
+        return context.clearRect( entity.x, entity.y, entity.width, entity.height );
+    }
+
+    my.move = function(entity, movement){
+
+        movement = movement.replace(/ /g,"").split(",");
+        my.clear(entity);
+
+        entity[movement[0]] += parseInt(movement[1], 10);
+
+        // Prevent movement outside the canvas
+        if (entity.x < 0) {
+            entity.x = 0;
+        };
+
+        if (entity.y < 0) {
+            entity.y = 0;
+        };
+
+        if (entity.x + entity.width > context.canvas.width) {
+            entity.x = context.canvas.width - entity.width;
+        };
+
+        if (entity.y + entity.height > context.canvas.height) {
+            entity.y = context.canvas.height - entity.height;
+        };
+
+        return my.draw(entity);
+
+    };
 
     // PRIVATE
     // ==========
