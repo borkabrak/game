@@ -16,10 +16,10 @@ Game = function(init){
         "s": function(){ my.move(my.player, "y,10") },
         "a": function(){ my.move(my.player, "x,-10") },
         "d": function(){ my.move(my.player, "x,10") },
-        "k": function(){ my.move(my.player, "y,-10") },
-        "j": function(){ my.move(my.player, "y,10") },
-        "h": function(){ my.move(my.player, "x,-10") },
-        "l": function(){ my.move(my.player, "x,10") },
+        "k": function(){ my.move(my.player, "up") },
+        "j": function(){ my.move(my.player, "down") },
+        "h": function(){ my.move(my.player, "left") },
+        "l": function(){ my.move(my.player, "right") },
     };
 
     // Entities -- objects to track within the game world.
@@ -67,6 +67,18 @@ Game = function(init){
     }
 
     my.move = function(entity, movement){
+    
+        // english shortcuts for common movements
+        var shortcuts = {
+            "up":   "y, -10",
+            "down": "y, 10",
+            "left": "x, -10",
+            "right": "x, 10"
+        };
+
+        if (shortcuts[movement] !== undefined ){
+            movement = shortcuts[movement];
+        };
 
         movement = movement.replace(/ /g,"").split(",");
         my.clear(entity);
